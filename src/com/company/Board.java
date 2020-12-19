@@ -13,6 +13,8 @@ import java.util.Scanner;
 public class Board {
     Plane boardTable[][];
 
+    private King kingWhite, kingBlack;
+
     //start white player
     Boolean switchTurn = false;
     public Board()
@@ -56,6 +58,12 @@ public class Board {
             boardTable[1][i].setGameObject(new Pawn(true));
             boardTable[6][i].setGameObject(new Pawn(false));
         }
+
+        kingWhite = (King)boardTable[7][4].getFigure();
+        kingWhite.setXY(7,4);
+
+        kingBlack = (King)boardTable[0][4].getFigure();
+        kingBlack.setXY(0,4);
     }
 
     public void printBoard()
@@ -85,6 +93,18 @@ public class Board {
         System.out.println("");
     }
 
+    public boolean checkMate(boolean color)
+    {
+        if(true == color)
+        {
+            return kingWhite.checkMateKing(this.boardTable);
+        }
+        else
+        {
+            return kingBlack.checkMateKing(this.boardTable);
+        }
+    }
+
     public void SelectAndMove(int fx, char fy, int px, char py)
     {
         int startLetter = 65;
@@ -98,10 +118,23 @@ public class Board {
             {
                 if(figure.move(fx,fyInt,px,pyInt,this.boardTable))
                 {
+                    BasePawn copy_figure = boardTable[fx][fyInt].getFigure();
+                    BasePawn copy_figureEnemy =boardTable[px][pyInt].getFigure();
+
                     boardTable[fx][fyInt].setGameObject(null);
                     boardTable[px][pyInt].setGameObject(figure);
-                    System.out.println("Poprawny ruch");
-                    switchTurn = !switchTurn;
+
+                    if(false == checkMate(figure.getColor()))
+                    {
+                        System.out.println("Poprawny ruch");
+                        switchTurn = !switchTurn;
+                    }
+                    else
+                    {
+                        boardTable[fx][fyInt].setGameObject(copy_figure);
+                        boardTable[px][pyInt].setGameObject(copy_figureEnemy);
+                        System.out.println("Nie mozna wykonac ruchu przez szach krola");
+                    }
                 }
                 else
                 {
@@ -110,7 +143,16 @@ public class Board {
             }
             else
             {
-                System.out.println("Ruch ma gracz przecinego koloru");
+                String color = "";
+                if(figure.getColor())
+                {
+                    color = "bialego";
+                }
+                else
+                {
+                    color = "czarnego";
+                }
+                System.out.println("Ruch ma gracz koloru "+color);
             }
         }
         else
@@ -123,46 +165,46 @@ public class Board {
 
     public void saveBoardToFile() {
 
-        //Create File
-        String fileName = "fileName";
-        try {
-            File myObj = new File(fileName + ".txt");
-            if (myObj.createNewFile()) {
-                System.out.println("GameSave to file : " + myObj.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-
-        //Write to file
-        try {
-            String out = new String();
-            FileWriter myWriter = new FileWriter(fileName + ".txt");
-            for(int i=0;i<8;i++)
-            {
-                for(int j=0;j<8;j++)
-                {
-                    if(this.boardTable[i][j].getFigure() != null)
-                    {
-                        out+=this.boardTable[i][j].getFigure().symbol + " ";
-                    }
-                    else
-                    {
-                        out+=this.boardTable[i][j].symbol + " ";
-                    }
-                }
-                out+='\n';
-            }
-            myWriter.write(out);
-            myWriter.close();
-            System.out.println("Successfully wrote to the file.");
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
+//        //Create File
+//        String fileName = "fileName";
+//        try {
+//            File myObj = new File(fileName + ".txt");
+//            if (myObj.createNewFile()) {
+//                System.out.println("GameSave to file : " + myObj.getName());
+//            } else {
+//                System.out.println("File already exists.");
+//            }
+//        } catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
+//
+//        //Write to file
+//        try {
+//            String out = new String();
+//            FileWriter myWriter = new FileWriter(fileName + ".txt");
+//            for(int i=0;i<8;i++)
+//            {
+//                for(int j=0;j<8;j++)
+//                {
+//                    if(this.boardTable[i][j].getFigure() != null)
+//                    {
+//                        out+=this.boardTable[i][j].getFigure().symbol + " ";
+//                    }
+//                    else
+//                    {
+//                        out+=this.boardTable[i][j].symbol + " ";
+//                    }
+//                }
+//                out+='\n';
+//            }
+//            myWriter.write(out);
+//            myWriter.close();
+//            System.out.println("Successfully wrote to the file.");
+//        } catch (IOException e) {
+//            System.out.println("An error occurred.");
+//            e.printStackTrace();
+//        }
 
     }
 

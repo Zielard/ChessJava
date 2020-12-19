@@ -69,7 +69,7 @@ public class Pawn extends BasePawn
 
                     } else {
                         //jesli dalej to tylko jeden ruch
-                        if ((fx + 1 == px) && (fy == py)) {
+                        if ((fx - 1 == px) && (fy == py)) {
                             return true;
                         }
                     }
