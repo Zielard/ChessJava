@@ -8,6 +8,7 @@ public class King extends BasePawn {
 
     public void setXY(int x,int y) {
         this.x = x;
+        this.y =y;
     }
 
     public int getX() {
@@ -161,10 +162,10 @@ public class King extends BasePawn {
                         }
                         break;
                     }
-                }
-                if(boardTable[t][s].getFigure().getColor() == !enemyColor)
-                {
-                    break;
+                    if(boardTable[t][s].getFigure().getColor() == !enemyColor)
+                    {
+                        break;
+                    }
                 }
                 s-=1;
             }
@@ -175,7 +176,7 @@ public class King extends BasePawn {
             }
         }
 
-        //right up
+//        //right up
         s = fy;
         for(int t = fx-1;t<8;t--)
         {
@@ -205,8 +206,8 @@ public class King extends BasePawn {
                 break;
             }
         }
-
-        //right down
+//
+//        //right down
         s = fy;
         for(int t = fx+1;t<8;t++)
         {
@@ -236,8 +237,8 @@ public class King extends BasePawn {
                 break;
             }
         }
-
-        //left down
+//
+//        //left down
         s = fy;
         for(int t = fx+1;t<8;t++)
         {
@@ -267,197 +268,197 @@ public class King extends BasePawn {
                 break;
             }
         }
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////
-        //FOR TOWER AND QUEEN
-        //Down
-        for(int t = fx+1;t<8;t++) {
-
-            // find figure
-            if(boardTable[t][fy].getFigure() != null)
-            {
-                if(boardTable[t][fy].getFigure().getColor() == enemyColor)
-                {
-                    //mate runnner and queen
-                    if(boardTable[t][fy].getFigure().type == FType.TOWER || boardTable[t][s].getFigure().type == FType.QUEEN)
-                    {
-                        return true;
-                    }
-                }
-                if(boardTable[t][fy].getFigure().getColor() == !enemyColor)
-                {
-                    break;
-                }
-            }
-        }
-
-        //up
-        for(int t = fx-1;t<8;t--) {
-            if(t >= 0) {
-                // find figure
-                if(boardTable[t][fy].getFigure() != null)
-                {
-                    if(boardTable[t][fy].getFigure().getColor() == enemyColor)
-                    {
-                        //mate runnner and queen
-                        if(boardTable[t][fy].getFigure().type == FType.TOWER || boardTable[t][s].getFigure().type == FType.QUEEN)
-                        {
-                            return true;
-                        }
-                    }
-                    if(boardTable[t][fy].getFigure().getColor() == !enemyColor)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-
-        //right
-        for(int t = fy+1;t<8;t++) {
-            // find figure
-            if(boardTable[fx][t].getFigure() != null)
-            {
-                if(boardTable[fx][t].getFigure().getColor() == enemyColor)
-                {
-                    //mate runnner and queen
-                    if(boardTable[fx][t].getFigure().type == FType.TOWER || boardTable[t][s].getFigure().type == FType.QUEEN)
-                    {
-                        return true;
-                    }
-                }
-                if(boardTable[fx][t].getFigure().getColor() == !enemyColor)
-                {
-                    break;
-                }
-            }
-        }
-
-        //left
-        for(int t = fy;t<8;t--) {
-            if(t >= 0) {
-                // find figure
-                if(boardTable[fx][t].getFigure() != null)
-                {
-                    if(boardTable[fx][t].getFigure().getColor() == enemyColor)
-                    {
-                        //mate runnner and queen
-                        if(boardTable[fx][t].getFigure().type == FType.TOWER || boardTable[t][s].getFigure().type == FType.QUEEN)
-                        {
-                            return true;
-                        }
-                    }
-                    if(boardTable[fx][t].getFigure().getColor() == !enemyColor)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-
-///////////////////////////////////////////////////////////////////////////////////////////////
-//FOR HORSE
-        if((fx >= 2) && (fy >= 1))
-        {
-                if ((boardTable[fx - 2][fy - 1].getFigure() != null))
-                {
-                    if (boardTable[fx - 2][fy - 1].getFigure().getColor() == enemyColor) {
-                        if(boardTable[fx - 2][fy - 1].getFigure().type == FType.HORSE)
-                        {
-                            return true;
-                        }
-                    }
-                }
-        }
-
-        if((fx >= 2) && (fy <= 6))
-        {
-            if ((boardTable[fx - 2][fy + 1].getFigure() != null))
-            {
-                if (boardTable[fx - 2][fy + 1].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx - 2][fy + 1].getFigure().type == FType.HORSE)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        if((fx >= 1) && (fy <= 5))
-        {
-            if ((boardTable[fx - 1][fy + 2].getFigure() != null))
-            {
-                if (boardTable[fx - 1][fy + 2].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx - 1][fy + 2].getFigure().type == FType.HORSE)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        if((fx >= 1) && (fy >= 2))
-        {
-            if ((boardTable[fx - 1][fy - 2].getFigure() != null))
-            {
-                if (boardTable[fx - 1][fy - 2].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx - 1][fy - 2].getFigure().type == FType.HORSE)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        if((fx <= 6) && (fy >= 2))
-        {
-            if ((boardTable[fx + 1][fy - 2].getFigure() != null))
-            {
-                if (boardTable[fx + 1][fy - 2].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx + 1][fy - 2].getFigure().type == FType.HORSE)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        if((fx <= 5) && (fy >= 1))
-        {
-            if ((boardTable[fx + 2][fy - 1].getFigure() != null))
-            {
-                if (boardTable[fx + 2][fy - 1].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx + 2][fy - 1].getFigure().type == FType.HORSE)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        if((fx <= 6) && (fy <= 5))
-        {
-            if ((boardTable[fx + 1][fy + 2].getFigure() != null))
-            {
-                if (boardTable[fx + 1][fy + 2].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx + 1][fy + 2].getFigure().type == FType.HORSE)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        if((fx <= 5) && (fy <= 6))
-        {
-            if ((boardTable[fx + 2][fy + 1].getFigure() != null))
-            {
-                if (boardTable[fx + 2][fy + 1].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx + 2][fy + 1].getFigure().type == FType.HORSE)
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
+//
+//        ///////////////////////////////////////////////////////////////////////////////////////////////
+//        //FOR TOWER AND QUEEN
+//        //Down
+//        for(int t = fx+1;t<8;t++) {
+//
+//            // find figure
+//            if(boardTable[t][fy].getFigure() != null)
+//            {
+//                if(boardTable[t][fy].getFigure().getColor() == enemyColor)
+//                {
+//                    //mate runnner and queen
+//                    if(boardTable[t][fy].getFigure().type == FType.TOWER || boardTable[t][s].getFigure().type == FType.QUEEN)
+//                    {
+//                        return true;
+//                    }
+//                }
+//                if(boardTable[t][fy].getFigure().getColor() == !enemyColor)
+//                {
+//                    break;
+//                }
+//            }
+//        }
+//
+//        //up
+//        for(int t = fx-1;t<8;t--) {
+//            if(t >= 0) {
+//                // find figure
+//                if(boardTable[t][fy].getFigure() != null)
+//                {
+//                    if(boardTable[t][fy].getFigure().getColor() == enemyColor)
+//                    {
+//                        //mate runnner and queen
+//                        if(boardTable[t][fy].getFigure().type == FType.TOWER || boardTable[t][s].getFigure().type == FType.QUEEN)
+//                        {
+//                            return true;
+//                        }
+//                    }
+//                    if(boardTable[t][fy].getFigure().getColor() == !enemyColor)
+//                    {
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+//
+//        //right
+//        for(int t = fy+1;t<8;t++) {
+//            // find figure
+//            if(boardTable[fx][t].getFigure() != null)
+//            {
+//                if(boardTable[fx][t].getFigure().getColor() == enemyColor)
+//                {
+//                    //mate runnner and queen
+//                    if(boardTable[fx][t].getFigure().type == FType.TOWER || boardTable[t][s].getFigure().type == FType.QUEEN)
+//                    {
+//                        return true;
+//                    }
+//                }
+//                if(boardTable[fx][t].getFigure().getColor() == !enemyColor)
+//                {
+//                    break;
+//                }
+//            }
+//        }
+//
+//        //left
+//        for(int t = fy;t<8;t--) {
+//            if(t >= 0) {
+//                // find figure
+//                if(boardTable[fx][t].getFigure() != null)
+//                {
+//                    if(boardTable[fx][t].getFigure().getColor() == enemyColor)
+//                    {
+//                        //mate runnner and queen
+//                        if(boardTable[fx][t].getFigure().type == FType.TOWER || boardTable[t][s].getFigure().type == FType.QUEEN)
+//                        {
+//                            return true;
+//                        }
+//                    }
+//                    if(boardTable[fx][t].getFigure().getColor() == !enemyColor)
+//                    {
+//                        break;
+//                    }
+//                }
+//            }
+//        }
+//
+/////////////////////////////////////////////////////////////////////////////////////////////////
+////FOR HORSE
+//        if((fx >= 2) && (fy >= 1))
+//        {
+//                if ((boardTable[fx - 2][fy - 1].getFigure() != null))
+//                {
+//                    if (boardTable[fx - 2][fy - 1].getFigure().getColor() == enemyColor) {
+//                        if(boardTable[fx - 2][fy - 1].getFigure().type == FType.HORSE)
+//                        {
+//                            return true;
+//                        }
+//                    }
+//                }
+//        }
+//
+//        if((fx >= 2) && (fy <= 6))
+//        {
+//            if ((boardTable[fx - 2][fy + 1].getFigure() != null))
+//            {
+//                if (boardTable[fx - 2][fy + 1].getFigure().getColor() == enemyColor) {
+//                    if(boardTable[fx - 2][fy + 1].getFigure().type == FType.HORSE)
+//                    {
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+//
+//        if((fx >= 1) && (fy <= 5))
+//        {
+//            if ((boardTable[fx - 1][fy + 2].getFigure() != null))
+//            {
+//                if (boardTable[fx - 1][fy + 2].getFigure().getColor() == enemyColor) {
+//                    if(boardTable[fx - 1][fy + 2].getFigure().type == FType.HORSE)
+//                    {
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+//        if((fx >= 1) && (fy >= 2))
+//        {
+//            if ((boardTable[fx - 1][fy - 2].getFigure() != null))
+//            {
+//                if (boardTable[fx - 1][fy - 2].getFigure().getColor() == enemyColor) {
+//                    if(boardTable[fx - 1][fy - 2].getFigure().type == FType.HORSE)
+//                    {
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+//
+//        if((fx <= 6) && (fy >= 2))
+//        {
+//            if ((boardTable[fx + 1][fy - 2].getFigure() != null))
+//            {
+//                if (boardTable[fx + 1][fy - 2].getFigure().getColor() == enemyColor) {
+//                    if(boardTable[fx + 1][fy - 2].getFigure().type == FType.HORSE)
+//                    {
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+//
+//        if((fx <= 5) && (fy >= 1))
+//        {
+//            if ((boardTable[fx + 2][fy - 1].getFigure() != null))
+//            {
+//                if (boardTable[fx + 2][fy - 1].getFigure().getColor() == enemyColor) {
+//                    if(boardTable[fx + 2][fy - 1].getFigure().type == FType.HORSE)
+//                    {
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+//
+//        if((fx <= 6) && (fy <= 5))
+//        {
+//            if ((boardTable[fx + 1][fy + 2].getFigure() != null))
+//            {
+//                if (boardTable[fx + 1][fy + 2].getFigure().getColor() == enemyColor) {
+//                    if(boardTable[fx + 1][fy + 2].getFigure().type == FType.HORSE)
+//                    {
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
+//        if((fx <= 5) && (fy <= 6))
+//        {
+//            if ((boardTable[fx + 2][fy + 1].getFigure() != null))
+//            {
+//                if (boardTable[fx + 2][fy + 1].getFigure().getColor() == enemyColor) {
+//                    if(boardTable[fx + 2][fy + 1].getFigure().type == FType.HORSE)
+//                    {
+//                        return true;
+//                    }
+//                }
+//            }
+//        }
         return false;
     }
 }
