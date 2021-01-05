@@ -124,7 +124,7 @@ public class Board {
                     boardTable[fx][fyInt].setGameObject(null);
                     boardTable[px][pyInt].setGameObject(figure);
 
-                    if(false == checkMate(figure.getColor()))
+                    if(false == checkMate(figure.getColor()) )
                     {
                         System.out.println("Poprawny ruch");
                         switchTurn = !switchTurn;

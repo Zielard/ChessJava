@@ -7,13 +7,7 @@ public class Main {
     board.setDefaultState();
 	board.printBoard();
 
-        board.SelectAndMove(6,'D',4,'D');
-        board.SelectAndMove(1,'C',3,'C');
-        board.SelectAndMove(6,'B',4,'B');
-        board.SelectAndMove(0,'D',3,'A');
-        board.SelectAndMove(4,'B',3,'B');
-        board.SelectAndMove(1,'H',2,'H');
-        board.SelectAndMove(6,'H',4,'H');
+
 //    Partia testowa
 //    board.SelectAndMove(6,'B',4,'B');
 //    board.SelectAndMove(1,'C',3,'C');
@@ -23,6 +17,20 @@ public class Main {
 //    board.SelectAndMove(4,'B',5,'B');
 //    board.SelectAndMove(7,'E',6,'E');
 
+//  Partia z Szachem krolowej
+//        board.SelectAndMove(6,'D',4,'D');
+//        board.SelectAndMove(1,'C',3,'C');
+//        board.SelectAndMove(6,'B',4,'B');
+//        board.SelectAndMove(0,'D',3,'A');
+//        board.SelectAndMove(4,'B',3,'B');
+//        board.SelectAndMove(1,'H',2,'H');
+//        board.SelectAndMove(6,'H',4,'H');
+        board.SelectAndMove(6,'D',4,'D');
+        board.SelectAndMove(1,'E',3,'E');
+        board.SelectAndMove(6,'H',4,'H');
+
+        board.SelectAndMove(0,'F',4,'B');
+        //board.SelectAndMove(6,'H',6,'H');
 
         while(true)
         {
