@@ -32,6 +32,70 @@ public class Board {
         }
     }
 
+    public void runGame()
+    {
+        while(true) {
+            System.out.println();
+
+            this.printBoard();
+            Scanner scan = new Scanner(System.in);
+            String color = "";
+            if (switchTurn == false) {
+                color = "biale";
+            } else {
+                color = "czarne";
+            }
+            System.out.println("Ruch maja " + color);
+            System.out.println("1 - zapisz partie do piku");
+            System.out.println("2 - Zakoncz gre");
+            System.out.println("Wykonaj ruch w nasteoujacym formacie : ABCD (np. B2B3 )");
+            String dec = scan.next();
+
+            if (dec.equals("1"))
+            {
+                this.saveBoardToFile();
+            }
+            else if (dec.equals("2"))
+            {
+                break;
+            }
+            else
+            {
+                if(dec.length() == 4)
+                {
+                    int fx = 8-(dec.charAt(1) - '0');
+                    char fy = dec.charAt(0);
+
+                    int px = 8-(dec.charAt(3) - '0');
+                    char py = dec.charAt(2);
+
+                    //walidacja kordynatow
+                    if((fx>=0 && fx<=8) && (px>=0 && px<=8))
+                    {
+                        int startLetter = 65;
+                        int fyInt = (int)fy - startLetter;
+                        int pyInt = (int)py - startLetter;
+                        if((fyInt>=0 && fyInt<=8) && (pyInt>=0 && pyInt<=8))
+                        {
+                            this.SelectAndMove(fx, fy, px, py);
+                        }
+                        else
+                        {
+                            System.out.println("zle wpisane kordynaty");
+                        }
+                    }
+                    else
+                    {
+                        System.out.println("zle wpisane kordynaty");
+                    }
+                }
+                else
+                {
+                    System.out.println("zle wpisane kordynaty");
+                }
+            }
+        }
+    }
     public void setDefaultState()
     {
 
@@ -82,7 +146,8 @@ public class Board {
         String line = "";
         for(int i=0;i<8;i++)
         {
-            line+= i + " ";
+            line+=(8- i) + " ";
+            //line+=i+ " ";
             for(int j=0;j<8;j++)
             {
                 line+= boardTable[i][j].getSymbol() + " ";
@@ -97,11 +162,11 @@ public class Board {
     {
         if(true == color)
         {
-            return kingWhite.checkMateKing(this.boardTable);
+            return kingBlack.checkMateKing(this.boardTable);
         }
         else
         {
-            return kingBlack.checkMateKing(this.boardTable);
+            return kingWhite.checkMateKing(this.boardTable);
         }
     }
 
@@ -133,12 +198,12 @@ public class Board {
                     {
                         boardTable[fx][fyInt].setGameObject(copy_figure);
                         boardTable[px][pyInt].setGameObject(copy_figureEnemy);
-                        System.out.println("Nie mozna wykonac ruchu przez szach krola");
+                        System.out.println("Blad : Nie mozna wykonac ruchu przez szach krola");
                     }
                 }
                 else
                 {
-                    System.out.println("Nie dozwolony ruch");
+                    System.out.println("Blad : Nie dozwolony ruch");
                 }
             }
             else
@@ -152,83 +217,156 @@ public class Board {
                 {
                     color = "czarnego";
                 }
-                System.out.println("Ruch ma gracz koloru "+color);
+                System.out.println("Blad : Ruch ma gracz koloru "+color);
             }
         }
         else
         {
-            System.out.println("Na polu nieznajduje sie zaden pionek");
+            System.out.println("Blad : Na polu nieznajduje sie zaden pionek");
         }
-
         this.printBoard();
     };
 
     public void saveBoardToFile() {
 
-//        //Create File
-//        String fileName = "fileName";
-//        try {
-//            File myObj = new File(fileName + ".txt");
-//            if (myObj.createNewFile()) {
-//                System.out.println("GameSave to file : " + myObj.getName());
-//            } else {
-//                System.out.println("File already exists.");
-//            }
-//        } catch (IOException e) {
-//            System.out.println("An error occurred.");
-//            e.printStackTrace();
-//        }
-//
-//        //Write to file
-//        try {
-//            String out = new String();
-//            FileWriter myWriter = new FileWriter(fileName + ".txt");
-//            for(int i=0;i<8;i++)
-//            {
-//                for(int j=0;j<8;j++)
-//                {
-//                    if(this.boardTable[i][j].getFigure() != null)
-//                    {
-//                        out+=this.boardTable[i][j].getFigure().symbol + " ";
-//                    }
-//                    else
-//                    {
-//                        out+=this.boardTable[i][j].symbol + " ";
-//                    }
-//                }
-//                out+='\n';
-//            }
-//            myWriter.write(out);
-//            myWriter.close();
-//            System.out.println("Successfully wrote to the file.");
-//        } catch (IOException e) {
-//            System.out.println("An error occurred.");
-//            e.printStackTrace();
-//        }
+        //Create File
+        String fileName = "SavedGame";
+        try {
+            File myObj = new File(fileName + ".txt");
+            if (myObj.createNewFile()) {
+                System.out.println("GameSave to file : " + myObj.getName());
+            } else {
+                System.out.println("Taki plik juz istnieje zostanie nadpisany.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+        //Write to file
+        try {
+            String out = new String();
+            FileWriter myWriter = new FileWriter(fileName + ".txt");
+            for(int i=0;i<8;i++)
+            {
+                for(int j=0;j<8;j++)
+                {
+                    if(this.boardTable[i][j].getFigure() != null)
+                    {
+                        out+=this.boardTable[i][j].getFigure().symbol + " ";
+                    }
+                    else
+                    {
+                        out+=this.boardTable[i][j].symbol + " ";
+                    }
+                }
+                out+='\n';
+            }
+            // with player have move?
+            out+=this.switchTurn;
+
+            myWriter.write(out);
+            myWriter.close();
+            System.out.println("Stan gry zostal zapisany.");
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
 
     }
 
     public void loadBoardFromFile() {
-//        try {
-//            File myObj = new File("filename.txt");
-//            Scanner myReader = new Scanner(myObj);
-//            while (myReader.hasNextLine()) {
-//                for(int i=0;i<8;i++)
-//                {
-//                    String data = myReader.nextLine();
-//                    String[] arrOfStr = data.split(" ");
-//                    for(int j=0;j<8;j++)
-//                    {
-//                        boardTable[i][j] = (char)arrOfStr[j];
-//                    }
-//                }
-//
-//                //System.out.println(data);
-//            }
-//            myReader.close();
-//        } catch (FileNotFoundException e) {
-//            System.out.println("An error occurred.");
-//            e.printStackTrace();
-//        }
+        try {
+            File myObj = new File("SavedGame.txt");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                for(int i=0;i<8;i++)
+                {
+                    String data = myReader.nextLine();
+                    String[] arrOfStr = data.split(" ");
+                    for(int j=0;j<8;j++)
+                    {
+                        if(arrOfStr[j] != "⛝" && arrOfStr[j] != "⛞")
+                        {
+                            BasePawn pawn = null;
+                            //Black
+                            if(arrOfStr[j].equals("♙"))
+                            {
+                                pawn = new Pawn(true);
+                            }
+                            else if(arrOfStr[j].equals("♘"))
+                            {
+                                pawn = new Horse(true);
+                            }
+                            else if(arrOfStr[j].equals("♗"))
+                            {
+                                pawn = new Runner(true);
+                            }
+                            else if(arrOfStr[j].equals("♖"))
+                            {
+                                pawn = new Tower(true);
+                            }
+                            else if(arrOfStr[j].equals("♕"))
+                            {
+                                pawn = new Queen(true);
+                            }
+                            else if(arrOfStr[j].equals("♔"))
+                            {
+                                pawn = new King(true);
+                                kingBlack = (King)pawn;
+                                kingBlack.setXY(i,j);
+                            }
+
+                            //White
+                            if(arrOfStr[j].equals("♟"))
+                            {
+                                pawn = new Pawn(false);
+                            }
+                            else if(arrOfStr[j].equals("♞"))
+                            {
+                                pawn = new Horse(false);
+                            }
+                            else if(arrOfStr[j].equals("♝"))
+                            {
+                                pawn = new Runner(false);
+                            }
+                            else if(arrOfStr[j].equals("♜"))
+                            {
+                                pawn = new Tower(false);
+                            }
+                            else if(arrOfStr[j].equals("♛"))
+                            {
+                                pawn = new Queen(false);
+                            }
+                            else if(arrOfStr[j].equals("♚"))
+                            {
+                                pawn = new King(false);
+                                kingWhite = (King)pawn;
+                                kingWhite.setXY(i,j);
+                            }
+                            boardTable[i][j].setGameObject(pawn);
+                        }
+                        else
+                        {
+                            boardTable[i][j].setGameObject(null);
+                        }
+                    }
+                }
+                String data = myReader.nextLine();
+                if(data.equals("false")) // maja ruch biale
+                {
+                    this.switchTurn = false;
+                }
+                else if(data.equals("true"))  // maja ruch czarne
+                {
+                    this.switchTurn = true;
+                }
+                System.out.println("Stan gry zostal wczytany.");
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 }
