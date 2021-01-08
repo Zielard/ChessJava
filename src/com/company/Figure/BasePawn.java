@@ -2,7 +2,7 @@ package com.company.Figure;
 
 import com.company.GameObject;
 
-public class BasePawn extends GameObject implements FigureI{
+public abstract class BasePawn extends GameObject {
 
     private boolean color;
     public BasePawn(boolean colorIn)
@@ -16,8 +16,5 @@ public class BasePawn extends GameObject implements FigureI{
         return color;
     }
 
-    @Override
-    public boolean move(int px, int py,int fx, int fy,Plane boardTable[][]) {
-        return false;
-    }
+    public abstract boolean move(int px, int py,int fx, int fy,Plane boardTable[][]);
 }

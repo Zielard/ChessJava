@@ -33,7 +33,6 @@ public class King extends BasePawn {
         this.type = FType.KING;
     }
 
-
     @Override
     public boolean move(int fx, int fy,int px, int py,Plane boardTable[][])
     {

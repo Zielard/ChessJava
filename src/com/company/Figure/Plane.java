@@ -4,7 +4,8 @@ import com.company.GameObject;
 
 public class Plane extends GameObject
 {
-    BasePawn figure = null;
+    private BasePawn figure = null;
+
     public Plane()
     {
         super();
@@ -41,4 +42,5 @@ public class Plane extends GameObject
     {
         return figure;
     }
+
 }
