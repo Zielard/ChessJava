@@ -35,12 +35,12 @@ public class Board {
         }
     }
 
-    public King getKingWhite() {
-        return kingWhite;
+    public void setXYKingWhite(int x, int y) {
+        kingWhite.setXY(x,y);
     }
 
-    public King getKingBlack() {
-        return kingBlack;
+    public void setXYKingBlack(int x, int y) {
+        kingBlack.setXY(x,y);
     }
 
     public void setSwitchTurn(Boolean switchTurn) {
@@ -55,6 +55,17 @@ public class Board {
         return boardTable;
     }
 
+    public boolean checkMate(boolean color)
+    {
+        if(true == color)
+        {
+            return this.kingBlack.checkMateKing(this.boardTable);
+        }
+        else
+        {
+            return this.kingWhite.checkMateKing(this.boardTable);
+        }
+    }
     public void setDefaultState()
     {
         //clear board

@@ -90,18 +90,6 @@ public class Engine {
         }
     }
 
-    public boolean checkMate(boolean color)
-    {
-        if(true == color)
-        {
-            return this.board.getKingWhite().checkMateKing(this.board.getBoardTable());
-        }
-        else
-        {
-            return this.board.getKingBlack().checkMateKing(this.board.getBoardTable());
-        }
-    }
-
     public void SelectAndMove(int fx, char fy, int px, char py)
     {
         Plane[][] boardTable = this.board.getBoardTable();
@@ -122,8 +110,17 @@ public class Engine {
                     boardTable[fx][fyInt].setGameObject(null);
                     boardTable[px][pyInt].setGameObject(figure);
 
-                    if(false == checkMate(figure.getColor()) )
+                    if(false == this.board.checkMate(figure.getColor()) )
                     {
+                        if(figure.symbol == '♔' )
+                        {
+                            this.board.setXYKingWhite(fx,fyInt);
+                        }
+
+                        if(figure.symbol == '♚')
+                        {
+                            this.board.setXYKingBlack(fx,fyInt);
+                        }
                         System.out.println("Poprawny ruch");
                         boolean flag = this.board.getSwitchTurn();
                         this.board.setSwitchTurn(!flag);
