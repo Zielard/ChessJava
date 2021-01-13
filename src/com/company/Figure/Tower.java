@@ -13,7 +13,7 @@ public class Tower extends BasePawn
         {
             this.setSymbol('♜');
         }
-        this.type = FType.TOWER;
+        this.setType(FType.TOWER);
     }
 
     @Override

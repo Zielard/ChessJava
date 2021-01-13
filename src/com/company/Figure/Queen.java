@@ -16,7 +16,7 @@ public class Queen extends BasePawn {
             this.setSymbol('♛');
         }
 
-        this.type = FType.QUEEN;
+        this.setType(FType.QUEEN);
     }
 
     @Override

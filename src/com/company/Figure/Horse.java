@@ -12,7 +12,7 @@ public class Horse extends BasePawn {
         {
             this.setSymbol('♞');
         }
-        this.type = FType.HORSE;
+        this.setType(FType.HORSE);
     }
 
     @Override

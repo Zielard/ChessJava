@@ -39,9 +39,9 @@ public class Engine {
                 color = "czarne";
             }
             System.out.println("Ruch maja " + color);
-            System.out.println("1 - zapisz partie do piku");
+            System.out.println("1 - zapisz partie do pliku");
             System.out.println("2 - Zakoncz gre");
-            System.out.println("Wykonaj ruch w nasteoujacym formacie : ABCD (np. B2B3 )");
+            System.out.println("Wykonaj ruch w nastepujacym formacie : ABCD (np. B2B3 )");
             String dec = scan.next();
 
             if (dec.equals("1"))
@@ -112,12 +112,12 @@ public class Engine {
 
                     if(false == this.board.checkMate(figure.getColor()) )
                     {
-                        if(figure.symbol == '♔' )
+                        if(figure.getSymbol() == '♔' )
                         {
                             this.board.setXYKingWhite(fx,fyInt);
                         }
 
-                        if(figure.symbol == '♚')
+                        if(figure.getSymbol() == '♚')
                         {
                             this.board.setXYKingBlack(fx,fyInt);
                         }

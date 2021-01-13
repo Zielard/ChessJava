@@ -127,7 +127,7 @@ public class Board {
             line+=(8- i) + " ";
             for(int j=0;j<8;j++)
             {
-                line+= boardTable[i][j].getSymbol() + " ";
+                line+= boardTable[i][j].getPlaneSymbol() + " ";
             }
             System.out.println(line);
             line= "";
@@ -162,11 +162,11 @@ public class Board {
                 {
                     if(this.boardTable[i][j].getFigure() != null)
                     {
-                        out+=this.boardTable[i][j].getFigure().symbol + " ";
+                        out+=this.boardTable[i][j].getFigure().getSymbol() + " ";
                     }
                     else
                     {
-                        out+=this.boardTable[i][j].symbol + " ";
+                        out+=this.boardTable[i][j].getPlaneSymbol() + " ";
                     }
                 }
                 out+='\n';

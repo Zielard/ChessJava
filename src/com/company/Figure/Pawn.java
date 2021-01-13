@@ -15,7 +15,7 @@ public class Pawn extends BasePawn
         {
             this.setSymbol('♟');
         }
-        this.type = FType.PAWN;
+        this.setType(FType.PAWN);
     }
 
     @Override

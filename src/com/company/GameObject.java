@@ -5,22 +5,29 @@ import com.company.Figure.Plane;
 
 public class GameObject
 {
-    public FType type;
-    public char symbol = '⛞';
+    private FType type;
+    private char symbol = '⛞';
 
-    public GameObject()
-    {
-        type = FType.PLANE;
+    public FType getType() {
+        return type;
     }
 
-    public GameObject(char symbolIn)
-    {
-        this.symbol = symbolIn;
+    public char getSymbol() {
+        return symbol;
+    }
+
+    public void setType(FType type) {
+        this.type = type;
     }
 
     public void setSymbol(char newSymbol)
     {
         this.symbol =newSymbol;
+    }
+
+    public GameObject()
+    {
+        type = FType.PLANE;
     }
 
 }

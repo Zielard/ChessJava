@@ -16,7 +16,7 @@ public class Plane extends GameObject
         super();
         if(flagColor == true)
         {
-            setSymbol('⛞');
+            this.setSymbol('⛞');
         }
         else
         {
@@ -24,13 +24,13 @@ public class Plane extends GameObject
         }
     }
 
-    public char getSymbol()
+    public char getPlaneSymbol()
     {
         if(figure!=null)
         {
-            return figure.symbol;
+            return figure.getSymbol();
         }
-        return this.symbol;
+        return this.getSymbol();
     }
 
     public void setGameObject(BasePawn figureIn)

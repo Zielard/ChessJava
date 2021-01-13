@@ -30,7 +30,7 @@ public class King extends BasePawn {
         {
             this.setSymbol('♚');
         }
-        this.type = FType.KING;
+        this.setType(FType.KING);
     }
 
     @Override
@@ -155,7 +155,7 @@ public class King extends BasePawn {
                 {
                     if (boardTable[t][s].getFigure().getColor() == enemyColor) {
                         //mate runnner and queen
-                        if(boardTable[t][s].getFigure().type == FType.RUNNER || boardTable[t][s].getFigure().type == FType.QUEEN)
+                        if(boardTable[t][s].getFigure().getType() == FType.RUNNER || boardTable[t][s].getFigure().getType() == FType.QUEEN)
                         {
                             return true;
                         }
@@ -187,7 +187,7 @@ public class King extends BasePawn {
                 {
                     if (boardTable[t][s].getFigure().getColor() == enemyColor) {
                         //mate runnner and queen
-                        if(boardTable[t][s].getFigure().type == FType.RUNNER || boardTable[t][s].getFigure().type == FType.QUEEN)
+                        if(boardTable[t][s].getFigure().getType() == FType.RUNNER || boardTable[t][s].getFigure().getType() == FType.QUEEN)
                         {
                             return true;
                         }
@@ -218,7 +218,7 @@ public class King extends BasePawn {
                 {
                     if (boardTable[t][s].getFigure().getColor() == enemyColor) {
                         //mate runnner and queen
-                        if(boardTable[t][s].getFigure().type == FType.RUNNER || boardTable[t][s].getFigure().type == FType.QUEEN)
+                        if(boardTable[t][s].getFigure().getType() == FType.RUNNER || boardTable[t][s].getFigure().getType() == FType.QUEEN)
                         {
                             return true;
                         }
@@ -249,7 +249,7 @@ public class King extends BasePawn {
                 {
                     if (boardTable[t][s].getFigure().getColor() == enemyColor) {
                         //mate runnner and queen
-                        if(boardTable[t][s].getFigure().type == FType.RUNNER || boardTable[t][s].getFigure().type == FType.QUEEN)
+                        if(boardTable[t][s].getFigure().getType() == FType.RUNNER || boardTable[t][s].getFigure().getType() == FType.QUEEN)
                         {
                             return true;
                         }
@@ -281,7 +281,7 @@ public class King extends BasePawn {
                     if(boardTable[t][fy].getFigure().getColor() == enemyColor)
                     {
                         //mate runnner and queen
-                        if(boardTable[t][fy].getFigure().type == FType.TOWER || boardTable[t][fy].getFigure().type == FType.QUEEN)
+                        if(boardTable[t][fy].getFigure().getType() == FType.TOWER || boardTable[t][fy].getFigure().getType() == FType.QUEEN)
                         {
                             return true;
                         }
@@ -309,7 +309,7 @@ public class King extends BasePawn {
                     if(boardTable[t][fy].getFigure().getColor() == enemyColor)
                     {
                         //mate runnner and queen
-                        if(boardTable[t][fy].getFigure().type == FType.TOWER || boardTable[t][fy].getFigure().type == FType.QUEEN)
+                        if(boardTable[t][fy].getFigure().getType() == FType.TOWER || boardTable[t][fy].getFigure().getType() == FType.QUEEN)
                         {
                             return true;
                         }
@@ -335,7 +335,7 @@ public class King extends BasePawn {
                 if (boardTable[fx][t].getFigure() != null) {
                     if (boardTable[fx][t].getFigure().getColor() == enemyColor) {
                         //mate runnner and queen
-                        if (boardTable[fx][t].getFigure().type == FType.TOWER || boardTable[fx][t].getFigure().type == FType.QUEEN) {
+                        if (boardTable[fx][t].getFigure().getType() == FType.TOWER || boardTable[fx][t].getFigure().getType() == FType.QUEEN) {
                             return true;
                         }
                     }
@@ -361,7 +361,7 @@ public class King extends BasePawn {
                     if(boardTable[fx][t].getFigure().getColor() == enemyColor)
                     {
                         //mate runnner and queen
-                        if(boardTable[fx][t].getFigure().type == FType.TOWER || boardTable[fx][t].getFigure().type == FType.QUEEN)
+                        if(boardTable[fx][t].getFigure().getType() == FType.TOWER || boardTable[fx][t].getFigure().getType() == FType.QUEEN)
                         {
                             return true;
                         }
@@ -386,7 +386,7 @@ public class King extends BasePawn {
                 if ((boardTable[fx - 2][fy - 1].getFigure() != null))
                 {
                     if (boardTable[fx - 2][fy - 1].getFigure().getColor() == enemyColor) {
-                        if(boardTable[fx - 2][fy - 1].getFigure().type == FType.HORSE)
+                        if(boardTable[fx - 2][fy - 1].getFigure().getType() == FType.HORSE)
                         {
                             return true;
                         }
@@ -399,7 +399,7 @@ public class King extends BasePawn {
             if ((boardTable[fx - 2][fy + 1].getFigure() != null))
             {
                 if (boardTable[fx - 2][fy + 1].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx - 2][fy + 1].getFigure().type == FType.HORSE)
+                    if(boardTable[fx - 2][fy + 1].getFigure().getType() == FType.HORSE)
                     {
                         return true;
                     }
@@ -412,7 +412,7 @@ public class King extends BasePawn {
             if ((boardTable[fx - 1][fy + 2].getFigure() != null))
             {
                 if (boardTable[fx - 1][fy + 2].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx - 1][fy + 2].getFigure().type == FType.HORSE)
+                    if(boardTable[fx - 1][fy + 2].getFigure().getType() == FType.HORSE)
                     {
                         return true;
                     }
@@ -424,7 +424,7 @@ public class King extends BasePawn {
             if ((boardTable[fx - 1][fy - 2].getFigure() != null))
             {
                 if (boardTable[fx - 1][fy - 2].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx - 1][fy - 2].getFigure().type == FType.HORSE)
+                    if(boardTable[fx - 1][fy - 2].getFigure().getType() == FType.HORSE)
                     {
                         return true;
                     }
@@ -437,7 +437,7 @@ public class King extends BasePawn {
             if ((boardTable[fx + 1][fy - 2].getFigure() != null))
             {
                 if (boardTable[fx + 1][fy - 2].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx + 1][fy - 2].getFigure().type == FType.HORSE)
+                    if(boardTable[fx + 1][fy - 2].getFigure().getType() == FType.HORSE)
                     {
                         return true;
                     }
@@ -450,7 +450,7 @@ public class King extends BasePawn {
             if ((boardTable[fx + 2][fy - 1].getFigure() != null))
             {
                 if (boardTable[fx + 2][fy - 1].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx + 2][fy - 1].getFigure().type == FType.HORSE)
+                    if(boardTable[fx + 2][fy - 1].getFigure().getType() == FType.HORSE)
                     {
                         return true;
                     }
@@ -463,7 +463,7 @@ public class King extends BasePawn {
             if ((boardTable[fx + 1][fy + 2].getFigure() != null))
             {
                 if (boardTable[fx + 1][fy + 2].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx + 1][fy + 2].getFigure().type == FType.HORSE)
+                    if(boardTable[fx + 1][fy + 2].getFigure().getType() == FType.HORSE)
                     {
                         return true;
                     }
@@ -475,7 +475,7 @@ public class King extends BasePawn {
             if ((boardTable[fx + 2][fy + 1].getFigure() != null))
             {
                 if (boardTable[fx + 2][fy + 1].getFigure().getColor() == enemyColor) {
-                    if(boardTable[fx + 2][fy + 1].getFigure().type == FType.HORSE)
+                    if(boardTable[fx + 2][fy + 1].getFigure().getType() == FType.HORSE)
                     {
                         return true;
                     }

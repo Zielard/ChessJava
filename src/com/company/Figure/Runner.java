@@ -15,7 +15,7 @@ public class Runner extends BasePawn {
         {
             this.setSymbol('♝');
         }
-        this.type = FType.RUNNER;
+        this.setType(FType.RUNNER);
     }
 
     @Override
