@@ -106,6 +106,8 @@ public class Board {
 
         kingBlack = (King)boardTable[0][4].getFigure();
         kingBlack.setXY(0,4);
+
+        switchTurn = false;
     }
 
     public void printBoard()
