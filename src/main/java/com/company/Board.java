@@ -7,7 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.Scanner;
 
 public class Board {
@@ -278,6 +280,93 @@ public class Board {
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
+        }
+    }
+
+    public void loadBoardFromStr(String stringIn) {
+            List<String> items = Arrays.asList(stringIn.split("/n"));
+
+                for(int i=0;i<8;i++)
+                {
+                    String data = items.get(i);
+                    String[] arrOfStr = data.split(" ");
+                    for(int j=0;j<8;j++)
+                    {
+                        if(arrOfStr[j] != "⛝" && arrOfStr[j] != "⛞")
+                        {
+                            BasePawn pawn = null;
+                            //Black
+                            if(arrOfStr[j].equals("♙"))
+                            {
+                                pawn = new Pawn(true);
+                            }
+                            else if(arrOfStr[j].equals("♘"))
+                            {
+                                pawn = new Horse(true);
+                            }
+                            else if(arrOfStr[j].equals("♗"))
+                            {
+                                pawn = new Runner(true);
+                            }
+                            else if(arrOfStr[j].equals("♖"))
+                            {
+                                pawn = new Tower(true);
+                            }
+                            else if(arrOfStr[j].equals("♕"))
+                            {
+                                pawn = new Queen(true);
+                            }
+                            else if(arrOfStr[j].equals("♔"))
+                            {
+                                pawn = new King(true);
+                                kingBlack = (King)pawn;
+                                kingBlack.setXY(i,j);
+                            }
+
+                            //White
+                            if(arrOfStr[j].equals("♟"))
+                            {
+                                pawn = new Pawn(false);
+                            }
+                            else if(arrOfStr[j].equals("♞"))
+                            {
+                                pawn = new Horse(false);
+                            }
+                            else if(arrOfStr[j].equals("♝"))
+                            {
+                                pawn = new Runner(false);
+                            }
+                            else if(arrOfStr[j].equals("♜"))
+                            {
+                                pawn = new Tower(false);
+                            }
+                            else if(arrOfStr[j].equals("♛"))
+                            {
+                                pawn = new Queen(false);
+                            }
+                            else if(arrOfStr[j].equals("♚"))
+                            {
+                                pawn = new King(false);
+                                kingWhite = (King)pawn;
+                                kingWhite.setXY(i,j);
+                            }
+                            boardTable[i][j].setGameObject(pawn);
+                        }
+                        else
+                        {
+                            boardTable[i][j].setGameObject(null);
+                        }
+                    }
+                }
+
+        String data = items.get(items.size()-1);
+        if(data.equals("false")) // maja ruch biale
+        {
+            this.switchTurn = false;
+        }
+        else if(data.equals("true"))  // maja ruch czarne
+        {
+            this.switchTurn = true;
         }
     }
 }

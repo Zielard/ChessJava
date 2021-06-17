@@ -11,10 +11,20 @@ public class Engine {
 
     private Board board;
 
+    public Board getBoard() {
+        return board;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
+    }
+
+
     public Engine()
     {
         board = new Board();
     }
+
     public void initDefaultBoard()
     {
         board.setDefaultState();
@@ -23,6 +33,11 @@ public class Engine {
     public void initSavedBoard()
     {
         board.loadBoardFromFile();
+    }
+
+    public void initSetBoard(String str)
+    {
+        board.loadBoardFromStr(str);
     }
 
     public void runGame()
@@ -94,6 +109,9 @@ public class Engine {
     {
         Plane[][] boardTable = this.board.getBoardTable();
         int startLetter = 65;
+        fy = Character.toUpperCase(fy);
+        py = Character.toUpperCase(py);
+
         int fyInt = (int)fy - startLetter;
         int pyInt = (int)py - startLetter;
         BasePawn figure = boardTable[fx][fyInt].getFigure();
