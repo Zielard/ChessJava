@@ -1,1 +1,2 @@
-# ChessJava //TODO
+# ChessJava
+Simple chess game
