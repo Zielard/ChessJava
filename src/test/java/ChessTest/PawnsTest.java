@@ -1,4 +1,4 @@
-package FigureTests.TestQueen;
+package ChessTest;
 
 import com.company.Board;
 import com.company.Figure.*;

@@ -188,9 +188,9 @@ public class Board {
 
     }
 
-    public void loadBoardFromFile() {
+    public void loadBoardFromFile(String stringIn) {
         try {
-            File myObj = new File("SavedGame.txt");
+            File myObj = new File(stringIn);
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 for(int i=0;i<8;i++)

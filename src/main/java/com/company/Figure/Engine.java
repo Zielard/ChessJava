@@ -32,7 +32,7 @@ public class Engine {
 
     public void initSavedBoard()
     {
-        board.loadBoardFromFile();
+        board.loadBoardFromFile("SavedGame.txt");
     }
 
     public void initSetBoard(String str)
