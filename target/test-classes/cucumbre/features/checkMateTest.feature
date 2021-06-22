@@ -11,6 +11,8 @@ Feature: Checkmate
       | 0           | Black     |
       | 1           | Black     |
       | 2           | White     |
+      | 6           | Black     |
+      | 7           | Black     |
 
   Scenario Outline: Test - Check by King (King cant go to another place)
     Given We have a board temp for check by number <TempNumber>
@@ -23,4 +25,4 @@ Feature: Checkmate
       | TempNumber  | Color    | xF | yF | xP | yP |
       | 3           | Black    |  8 | E  |  8 | D  |
       | 4           | Black    |  6 | G  |  6 | H  |
-      | 5           | Black    |  6 | D  |  7 | D  |
+      | 5           | White    |  6 | D  |  7 | D  |

@@ -26,6 +26,8 @@ Feature: Figure moves
       | King   | black  | 2 | G |    1 |    G |
       | King   | black  | 2 | G |    2 |    H |
 
+      | King   | black  | 3 | B |    1 |    A |
+
   Scenario Outline: Test - Queen move to every border
     Given We have a pawn "<Figure>" of the color "<Color>" at the position <x>, "<y>"
     When We want go to <newX>, "<newY>"
@@ -125,6 +127,7 @@ Feature: Figure moves
       | Horse  | black  | 6 | B |    8 |    A |
       | Horse  | black  | 6 | G |    8 |    H |
       | Horse  | black  | 7 | F |    6 |    H |
+      | Horse  | black  | 7 | F |    8 |    D |
 
       | Horse  | black  | 2 | C |    1 |    E |
       | Horse  | black  | 2 | C |    1 |    A |

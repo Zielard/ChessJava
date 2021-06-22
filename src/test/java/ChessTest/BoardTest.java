@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,7 +24,9 @@ public class BoardTest {
             "boardTempForTest\\CheckMate\\checkMate_3.txt",
             "boardTempForTest\\CheckMate\\checkMate_4.txt",
             "boardTempForTest\\CheckMate\\checkMate_5.txt",
-            "boardTempForTest\\CheckMate\\checkMate_6.txt");
+            "boardTempForTest\\CheckMate\\checkMate_6.txt",
+            "boardTempForTest\\CheckMate\\checkMate_7.txt",
+            "boardTempForTest\\CheckMate\\checkMate_8.txt");
 
     Engine engine;
     int result = 1;
